@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Odpočítávání do důchodu</string>
+    <string name="header">Do zaslouženého důchodu zbývá:</string>
+    <string name="days">%1$s, %2$s a %3$s</string>
+    <string name="hours">%1$s, %2$s a %3$s</string>
+    <string name="and">a</string>
+    <string name="days_remaining"><big>0</big> let <big>0</big> měsíců a <big>0</big> dní</string>
+    <string name="time_remaining"><big>0</big> hodin <big>0</big> minut a <big>0</big> vteřin</string>
+
+    <plurals name="number_of_years">
+        <item quantity="one"><big>%d</big> rok</item>
+        <item quantity="few"><big>%d</big> roky</item>
+        <item quantity="other"><big>%d</big> let</item>
+    </plurals>
+    <plurals name="number_of_months">
+        <item quantity="one"><big>%d</big> měsíc</item>
+        <item quantity="few"><big>%d</big> měsíce</item>
+        <item quantity="other"><big>%d</big> měsíců</item>
+    </plurals>
+    <plurals name="number_of_days">
+        <item quantity="one"><big>%d</big> den</item>
+        <item quantity="few"><big>%d</big> dny</item>
+        <item quantity="other"><big>%d</big> dnů</item>
+    </plurals>
+    <plurals name="number_of_hours">
+        <item quantity="one"><big>%d</big> hodina</item>
+        <item quantity="few"><big>%d</big> hodiny</item>
+        <item quantity="other"><big>%d</big> hodin</item>
+    </plurals>
+    <plurals name="number_of_minutes">
+        <item quantity="one"><big>%d</big> minuta</item>
+        <item quantity="few"><big>%d</big> minuty</item>
+        <item quantity="other"><big>%d</big> minut</item>
+    </plurals>
+    <plurals name="number_of_seconds">
+        <item quantity="one"><big>%d</big> vteřina</item>
+        <item quantity="few"><big>%d</big> vteřiny</item>
+        <item quantity="other"><big>%d</big> vteřin</item>
+    </plurals>
+
+</resources>

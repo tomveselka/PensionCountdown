@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Countdown to pension</string>
+    <string name="header">Time remaining until well deserved pension:</string>
+    <string name="days">%1$s, %2$s and %3$s</string>
+    <string name="hours">%1$s, %2$s and %3$s</string>
+    <string name="and">and</string>
+    <string name="days_remaining"><big>0</big> years <big>0</big> months and <big>0</big> days</string>
+    <string name="time_remaining"><big>0</big> hours <big>0</big> minutes and <big>0</big> seconds</string>
+
+    <plurals name="number_of_years">
+        <item quantity="one"><big>%d</big> year</item>
+        <item quantity="other"><big>%d</big> years</item>
+    </plurals>
+    <plurals name="number_of_months">
+        <item quantity="one"><big>%d</big> month</item>
+        <item quantity="other"><big>%d</big> months</item>
+    </plurals>
+    <plurals name="number_of_days">
+        <item quantity="one"><big>%d</big> day</item>
+        <item quantity="other"><big>%d</big> days</item>
+    </plurals>
+    <plurals name="number_of_hours">
+        <item quantity="one"><big>%d</big> hour</item>
+        <item quantity="other"><big>%d</big> hours</item>
+    </plurals>
+    <plurals name="number_of_minutes">
+        <item quantity="one"><big>%d</big> minute</item>
+        <item quantity="other"><big>%d</big> minutes</item>
+    </plurals>
+    <plurals name="number_of_seconds">
+        <item quantity="one"><big>%d</big> second</item>
+        <item quantity="other"><big>%d</big> seconds</item>
+    </plurals>
+</resources>
