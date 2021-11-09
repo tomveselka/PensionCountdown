@@ -35,8 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="@string/days_remaining"
- />
+        android:text="@string/days_remaining" />
 
     <TextView
         android:id="@+id/and_between"

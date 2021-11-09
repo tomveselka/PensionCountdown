@@ -38,5 +38,21 @@
         <item quantity="few"><big>%d</big> vteřiny</item>
         <item quantity="other"><big>%d</big> vteřin</item>
     </plurals>
+    <string name="male">Muž</string>
+    <string name="female">Žena</string>
+    <string name="gender">Pohlaví</string>
+    <string name="date_of_birth">Datum narození</string>
+    <string name="calculate">Vypočítat</string>
+    <string name="user_data_input_title">K výpočtu Vašeho věku odchodu do důchodu je potřeba několik údajů</string>
+    <string name="resultAgeAndDate">Váš věk odchodu do důchodu je %1$d let a den na který se tak těšíte je %2$te. %2$tB %2$tY</string>
+    <string name="number_of_children_raised">Počet vychovaných dětí</string>
 
+    <string-array name="number_of_children">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>

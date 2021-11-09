@@ -1,8 +1,10 @@
 package com.tomveselka.pensioncountdown
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.tomveselka.pensioncountdown.utils.DateAndTimeCalculator
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val intent = Intent(this, UserDataInput::class.java).apply {  }
+        Log.i("MainActivity", "Intent created")
+        startActivity(intent)
         timeView = findViewById<TextView>(R.id.time_remaining)
         dateView = findViewById<TextView>(R.id.days_remaining)
 
