@@ -55,4 +55,6 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+    <string name="user_settings">Data uživatele</string>
+    <string name="about_application">O aplikaci</string>
 </resources>

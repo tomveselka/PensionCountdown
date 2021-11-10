@@ -15,6 +15,8 @@
     <string name="calculate">Calculate</string>
     <string name="resultAgeAndDate">Your age of pension is %1$d years and date you are looking forward to is %2$te. %2$tB %2$tY</string>
     <string name="number_of_children_raised">Number of children raised</string>
+    <string name="user_settings">User Settings</string>
+    <string name="about_application">About application</string>
 
     <plurals name="number_of_years">
         <item quantity="one"><big>%d</big> year</item>

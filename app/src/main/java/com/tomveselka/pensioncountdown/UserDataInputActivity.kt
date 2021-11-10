@@ -1,24 +1,23 @@
 package com.tomveselka.pensioncountdown
 
 import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.*
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.RadioGroup
+import com.tomveselka.pensioncountdown.utils.PensionAgeCalculator
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-import android.R.string.no
 
-
-
-
-class UserDataInput : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     lateinit var genderRadioGroup: RadioGroup
     lateinit var genderRadioMale: RadioButton
@@ -29,7 +28,7 @@ class UserDataInput : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var calculateButton: Button
     lateinit var resultAgeAndDate: TextView
     var cal = Calendar.getInstance()
-
+    private var pensionAgeCalculator = PensionAgeCalculator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("UserInput", "Entered user input activity")
@@ -72,7 +71,7 @@ class UserDataInput : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // when you click on the button, show DatePickerDialog that is set with OnDateSetListener
         dateOfBirthEdit.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                DatePickerDialog(this@UserDataInput,
+                DatePickerDialog(this@UserDataInputActivity,
                     dateSetListener,
                     // set DatePickerDialog to point to today's date when it loads up
                     cal.get(Calendar.YEAR),
@@ -81,14 +80,42 @@ class UserDataInput : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         })
 
+        //GENDER RADIO
         genderRadioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group:RadioGroup, checkedId ->
             if (checkedId == R.id.genderRadioButtonMale) {
                 Log.i("UserInput","Clicked male")
+                numberOfChildrenLabel.visibility=View.GONE
+                numberOfChildrenSpinner.visibility=View.GONE
             } else if (checkedId == R.id.genderRadioButtonFemale) {
                 Log.i("UserInput","Clicked female")
+                numberOfChildrenLabel.visibility=View.VISIBLE
+                numberOfChildrenSpinner.visibility=View.VISIBLE
             }
         })
+
+        //RESULT BUTTON
+        calculateButton.setOnClickListener {
+            Log.i("UserInputResult","Number of children "+numberOfChildrenSpinner.selectedItemPosition)
+            var gender="male"
+            if (genderRadioGroup.checkedRadioButtonId == R.id.genderRadioButtonMale){
+                var gender = "male"
+            }else{
+                var gender = "female"
+            }
+            Log.i("UserInputResult","Selected radiobutton "+gender)
+            Log.i("UserInputResult","input date "+dateOfBirthEdit.text)
+            var pensionAge = pensionAgeCalculator.calculatePension(gender,dateOfBirthEdit.text.toString(),numberOfChildrenSpinner.selectedItemPosition.toString())
+            Log.i("UserInputResult","Pension age "+pensionAge)
+            var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            var birthDate = LocalDate.parse(dateOfBirthEdit.text, formatter)
+            var pensionDate=birthDate.plusYears(pensionAge.toLong())
+            Log.i("UserInputResult","Pension age "+pensionDate)
+            resultAgeAndDate.text=getString(R.string.resultAgeAndDate,pensionAge,pensionDate)
+            resultAgeAndDate.visibility=View.VISIBLE
+        }
     }
+
+
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         // An item was selected. You can retrieve the selected item using
@@ -100,9 +127,6 @@ class UserDataInput : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // Another interface callback
     }
 
-    private fun calculateButtonClicked(view: View) {
-
-    }
 
     private fun initializeViews() {
         genderRadioGroup= findViewById<RadioGroup>(R.id.genderRadioGroup)
