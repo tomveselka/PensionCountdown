@@ -7,6 +7,9 @@
     android:background="#4763BA"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <include
+        android:id="@+id/mainToolbar"
+        layout="@layout/toolbar"/>
 
     <TextView
         android:id="@+id/header"
@@ -35,8 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="@string/days_remaining"
- />
+        android:text="@string/days_remaining" />
 
     <TextView
         android:id="@+id/and_between"

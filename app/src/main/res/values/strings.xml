@@ -7,6 +7,16 @@
     <string name="and">and</string>
     <string name="days_remaining"><big>0</big> years <big>0</big> months and <big>0</big> days</string>
     <string name="time_remaining"><big>0</big> hours <big>0</big> minutes and <big>0</big> seconds</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="gender">Gender</string>
+    <string name="user_data_input_title">To calculate your pension age, some basic info is needed</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="calculate">Calculate</string>
+    <string name="resultAgeAndDate">Your age of pension is %1$d years and date you are looking forward to is %2$te. %2$tB %2$tY</string>
+    <string name="number_of_children_raised">Number of children raised</string>
+    <string name="user_settings">User Settings</string>
+    <string name="about_application">About application</string>
 
     <plurals name="number_of_years">
         <item quantity="one"><big>%d</big> year</item>
@@ -32,4 +42,13 @@
         <item quantity="one"><big>%d</big> second</item>
         <item quantity="other"><big>%d</big> seconds</item>
     </plurals>
+
+    <string-array name="number_of_children">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>
