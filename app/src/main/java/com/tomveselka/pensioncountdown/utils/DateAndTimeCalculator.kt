@@ -9,6 +9,7 @@ import java.time.LocalTime
 import kotlin.math.ceil
 import com.tomveselka.pensioncountdown.R.id.*
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 
@@ -32,9 +33,11 @@ class DateAndTimeCalculator{
         return String.format(context.resources.getString(R.string.hours,hoursString, minutesString,secondsString))
     }
 
-    fun calculateDate(context: Context): String{
-        var birthDate = LocalDate.of(1969,11,28)
-        var pensionDate = birthDate.plusYears(65)
+    fun calculateDate(context: Context, birthDateString: String, pensionAgeString: String): String{
+        var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        var birthDate = LocalDate.parse(birthDateString, formatter)
+
+        var pensionDate = birthDate.plusYears(pensionAgeString.toLong())
 
         var yearsBetween = ChronoUnit.YEARS.between(LocalDate.now(), pensionDate)
         val yearsString = context.resources.getQuantityString(R.plurals.number_of_years, yearsBetween.toInt(), yearsBetween)

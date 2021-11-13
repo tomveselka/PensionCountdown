@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingTop="10dp"
-    android:paddingRight="20dp"
     tools:context=".UserDataInputActivity">
-
+    <include
+        android:id="@+id/mainToolbar"
+        layout="@layout/toolbar"/>
     <TextView
         android:id="@+id/pageTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="@string/user_data_input_title"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
     <TextView
         android:id="@+id/genderLabel"
@@ -25,13 +26,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/gender" />
+        android:text="@string/gender"
+        android:layout_marginLeft="10dp"/>
 
     <RadioGroup
         android:id="@+id/genderRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
 
         <RadioButton
             android:id="@+id/genderRadioButtonMale"
@@ -58,7 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/date_of_birth" />
+        android:text="@string/date_of_birth"
+        android:layout_marginLeft="10dp"/>
 
     <EditText
         android:id="@+id/dateOfBirthInput"
@@ -67,7 +71,8 @@
         android:ems="10"
         android:inputType="date"
         android:minHeight="55dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:id="@+id/numberOfChildrenLabel"
@@ -76,14 +81,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="5dp"
-        android:text="@string/number_of_children_raised" />
+        android:text="@string/number_of_children_raised"
+        android:layout_marginLeft="10dp"/>
 
     <Spinner
         android:id="@+id/numberOfChildrenSpinner"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginLeft="10dp"/>
 
     <Button
         android:id="@+id/calculateButton"
@@ -92,7 +99,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#EC2727"
-        android:text="@string/calculate" />
+        android:text="@string/calculate"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:id="@+id/resultAgeAndDate"
@@ -102,6 +110,7 @@
         android:fontFamily="sans-serif-black"
         android:text="@string/resultAgeAndDate"
         android:textColor="#E8B335"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginLeft="10dp"/>
 
 </LinearLayout>
