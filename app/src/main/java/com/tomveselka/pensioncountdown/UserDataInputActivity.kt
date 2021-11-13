@@ -1,17 +1,16 @@
 package com.tomveselka.pensioncountdown
 
 import android.app.DatePickerDialog
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.widget.*
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.RadioGroup
+import androidx.appcompat.widget.Toolbar
+import com.tomveselka.pensioncountdown.preferences.PreferencesHandler
 import com.tomveselka.pensioncountdown.utils.PensionAgeCalculator
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -29,6 +28,11 @@ class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     lateinit var resultAgeAndDate: TextView
     var cal = Calendar.getInstance()
     private var pensionAgeCalculator = PensionAgeCalculator()
+    private var preferencesHandler = PreferencesHandler()
+    lateinit var pensionAge : String
+    lateinit var dateOfBirth : String
+    lateinit var gender : String
+    lateinit var numberOfChildren : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("UserInput", "Entered user input activity")
@@ -36,9 +40,6 @@ class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
         setContentView(R.layout.activity_user_data_input)
         initializeViews()
-
-
-        Log.i("UserInput","UserInputInitialised view")
 
         //DROPDOWN NUMBER OF CHILDREN
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -80,6 +81,21 @@ class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
             }
         })
 
+        loadPreferences()
+
+        var toolbar =findViewById<Toolbar>(R.id.mainToolbar)
+        toolbar.title=getString(R.string.user_settings)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
+        Log.i("UserInput","UserInputInitialised view")
+
+
+
+
+
         //GENDER RADIO
         genderRadioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group:RadioGroup, checkedId ->
             if (checkedId == R.id.genderRadioButtonMale) {
@@ -95,22 +111,29 @@ class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
         //RESULT BUTTON
         calculateButton.setOnClickListener {
-            Log.i("UserInputResult","Number of children "+numberOfChildrenSpinner.selectedItemPosition)
-            var gender="male"
+            numberOfChildren=numberOfChildrenSpinner.selectedItemPosition.toString()
+            Log.i("UserInputResult","Number of children "+numberOfChildren)
+
             if (genderRadioGroup.checkedRadioButtonId == R.id.genderRadioButtonMale){
-                var gender = "male"
+                gender = "M"
             }else{
-                var gender = "female"
+                gender = "F"
             }
             Log.i("UserInputResult","Selected radiobutton "+gender)
-            Log.i("UserInputResult","input date "+dateOfBirthEdit.text)
-            var pensionAge = pensionAgeCalculator.calculatePension(gender,dateOfBirthEdit.text.toString(),numberOfChildrenSpinner.selectedItemPosition.toString())
+
+            dateOfBirth = dateOfBirthEdit.text.toString()
+            Log.i("UserInputResult","input date "+dateOfBirth)
+
+            pensionAge = pensionAgeCalculator.calculatePension(gender,dateOfBirthEdit.text.toString(),numberOfChildrenSpinner.selectedItemPosition.toString()).toString()
             Log.i("UserInputResult","Pension age "+pensionAge)
             var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            var birthDate = LocalDate.parse(dateOfBirthEdit.text, formatter)
-            var pensionDate=birthDate.plusYears(pensionAge.toLong())
+            var dateOfBirthDate = LocalDate.parse(dateOfBirthEdit.text, formatter)
+            var pensionDate=dateOfBirthDate.plusYears(pensionAge.toLong())
             Log.i("UserInputResult","Pension age "+pensionDate)
-            resultAgeAndDate.text=getString(R.string.resultAgeAndDate,pensionAge,pensionDate)
+
+            preferencesHandler.saveUserData(this, gender, dateOfBirth, numberOfChildren, pensionAge)
+            Log.i("UserInputResult","Data saved to preferences: gender="+gender+" dateOfBirth="+dateOfBirth+" numberOfChildre="+numberOfChildren+" pensionAge="+pensionAge)
+            resultAgeAndDate.text=getString(R.string.resultAgeAndDate,pensionAge.toInt(),pensionDate)
             resultAgeAndDate.visibility=View.VISIBLE
         }
     }
@@ -143,5 +166,26 @@ class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
         val myFormat = "dd/MM/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
         dateOfBirthEdit.setText(sdf.format(cal.getTime()))
+    }
+
+    private fun loadPreferences(){
+        var listOfPreference = preferencesHandler.getSavedUserData(this)
+        gender = listOfPreference.get(0)
+        dateOfBirth = listOfPreference.get(1)
+        numberOfChildren = listOfPreference.get(2)
+        pensionAge = listOfPreference.get(3)
+        Log.i("UserInputResult","Data loaded from preferences: gender="+gender+" dateOfBirth="+dateOfBirth+" numberOfChildre="+numberOfChildren+" pensionAge="+pensionAge)
+        setFieldsFromPreferences()
+    }
+
+    private fun setFieldsFromPreferences(){
+        if (gender=="M"){
+            genderRadioGroup.check(genderRadioMale.id)
+        }else{
+            genderRadioGroup.check(genderRadioFemale.id)
+        }
+        dateOfBirthEdit.setText(dateOfBirth)
+        numberOfChildrenSpinner.setSelection(numberOfChildren.toInt())
+
     }
 }
