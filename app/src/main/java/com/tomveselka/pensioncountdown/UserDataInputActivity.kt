@@ -126,14 +126,32 @@ class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
             pensionAge = pensionAgeCalculator.calculatePension(gender,dateOfBirthEdit.text.toString(),numberOfChildrenSpinner.selectedItemPosition.toString()).toString()
             Log.i("UserInputResult","Pension age "+pensionAge)
-            var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            var dateOfBirthDate = LocalDate.parse(dateOfBirthEdit.text, formatter)
-            var pensionDate=dateOfBirthDate.plusYears(pensionAge.toLong())
-            Log.i("UserInputResult","Pension age "+pensionDate)
+            if (pensionAge=="P"){
+                resultAgeAndDate.text=getString(R.string.reached_pension)
+            }else {
+
+                var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                var dateOfBirthDate = LocalDate.parse(dateOfBirthEdit.text, formatter)
+                var pensionDate = LocalDate.now()
+                if (pensionAge.length < 4) {
+                    pensionDate = dateOfBirthDate.plusYears(pensionAge.substring(0, 2).toLong())
+                } else {
+                    pensionDate = dateOfBirthDate.plusYears(pensionAge.substring(0, 2).toLong())
+                    pensionDate = pensionDate.plusMonths(pensionAge.substring(4, 5).toLong())
+                }
+
+                Log.i("UserInputResult", "Pension date " + pensionDate)
+                val yearsString = resources.getQuantityString(R.plurals.number_of_years, pensionAge.substring(0, 2).toInt(), pensionAge.substring(0, 2).toLong())
+                var monthsString=""
+                if (pensionAge.length > 3) {
+                    monthsString=resources.getQuantityString(R.plurals.and_number_of_months,pensionAge.substring(4, 5).toInt(),pensionAge.substring(4, 5).toLong())
+                }
+                resultAgeAndDate.text =
+                    getString(R.string.resultAgeAndDate, yearsString,monthsString, pensionDate)
+            }
 
             preferencesHandler.saveUserData(this, gender, dateOfBirth, numberOfChildren, pensionAge)
             Log.i("UserInputResult","Data saved to preferences: gender="+gender+" dateOfBirth="+dateOfBirth+" numberOfChildre="+numberOfChildren+" pensionAge="+pensionAge)
-            resultAgeAndDate.text=getString(R.string.resultAgeAndDate,pensionAge.toInt(),pensionDate)
             resultAgeAndDate.visibility=View.VISIBLE
         }
     }
@@ -181,8 +199,12 @@ class UserDataInputActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     private fun setFieldsFromPreferences(){
         if (gender=="M"){
             genderRadioGroup.check(genderRadioMale.id)
+            numberOfChildrenLabel.visibility=View.GONE
+            numberOfChildrenSpinner.visibility=View.GONE
         }else{
             genderRadioGroup.check(genderRadioFemale.id)
+            numberOfChildrenLabel.visibility=View.VISIBLE
+            numberOfChildrenSpinner.visibility=View.VISIBLE
         }
         dateOfBirthEdit.setText(dateOfBirth)
         numberOfChildrenSpinner.setSelection(numberOfChildren.toInt())

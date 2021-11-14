@@ -18,6 +18,11 @@
         <item quantity="few"><big>%d</big> měsíce</item>
         <item quantity="other"><big>%d</big> měsíců</item>
     </plurals>
+    <plurals name="and_number_of_months">
+        <item quantity="one">a %d měsíc&#160;</item>
+        <item quantity="few">a %d měsíce&#160;</item>
+        <item quantity="other">a %d měsíců&#160;</item>
+    </plurals>
     <plurals name="number_of_days">
         <item quantity="one"><big>%d</big> den</item>
         <item quantity="few"><big>%d</big> dny</item>
@@ -44,7 +49,7 @@
     <string name="date_of_birth">Datum narození</string>
     <string name="calculate">Vypočítat</string>
     <string name="user_data_input_title">K výpočtu Vašeho věku odchodu do důchodu je potřeba několik údajů</string>
-    <string name="resultAgeAndDate">Váš věk odchodu do důchodu je %1$d let a den na který se tak těšíte je %2$te. %2$tB %2$tY</string>
+    <string name="resultAgeAndDate">Váš věk odchodu do důchodu je %1$s %2$sa den na který se tak těšíte nastane %3$te. %3$tB %3$tY</string>
     <string name="number_of_children_raised">Počet vychovaných dětí</string>
 
     <string-array name="number_of_children">
@@ -57,4 +62,7 @@
     </string-array>
     <string name="user_settings">Data uživatele</string>
     <string name="about_application">O aplikaci</string>
+    <string name="about_app_title">O aplikaci</string>
+    <string name="about_app_text">Tato aplikace slouží k výpočtu uživatelova věku odchodu do důchodu a na základě toho zobrazí odpočet, kolik času mu zbývá, než do toho důchodu bude moci jít</string>
+    <string name="reached_pension">Již jste dosáhli věku odchodu do důchodu. Tak si ho pořádně užijte</string>
 </resources>
