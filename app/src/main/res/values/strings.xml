@@ -13,7 +13,7 @@
     <string name="user_data_input_title">To calculate your pension age, some basic info is needed</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="calculate">Calculate</string>
-    <string name="resultAgeAndDate">Your age of pension is %1$d years and date you are looking forward to is %2$te. %2$tB %2$tY</string>
+    <string name="resultAgeAndDate">Your age of pension is %1$s %2$sand date you are looking forward to is %3$te. %3$tB %3$tY</string>
     <string name="number_of_children_raised">Number of children raised</string>
     <string name="user_settings">User Settings</string>
     <string name="about_application">About application</string>
@@ -22,6 +22,9 @@
     <string name="preference_file_birthDate" translatable="false">birthDate</string>
     <string name="preference_file_numberOfChildren" translatable="false">numberOfChildren</string>
     <string name="preference_file_pensionAge" translatable="false">pensionAge</string>
+    <string name="about_app_text">This application is designed to calculate users pension age and based on that and on his date of birth, to show him countdown, how long he has until he can go to pension</string>
+    <string name="about_app_title">About application</string>
+    <string name="reached_pension">You have already enjoyed age of pension. Enjoy</string>
     <plurals name="number_of_years">
         <item quantity="one"><big>%d</big> year</item>
         <item quantity="other"><big>%d</big> years</item>
@@ -29,6 +32,10 @@
     <plurals name="number_of_months">
         <item quantity="one"><big>%d</big> month</item>
         <item quantity="other"><big>%d</big> months</item>
+    </plurals>
+    <plurals name="and_number_of_months">
+        <item quantity="one">and %d month&#160;</item>
+        <item quantity="other">and %d months&#160;</item>
     </plurals>
     <plurals name="number_of_days">
         <item quantity="one"><big>%d</big> day</item>
