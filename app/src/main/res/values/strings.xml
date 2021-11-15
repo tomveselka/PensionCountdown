@@ -24,7 +24,7 @@
     <string name="preference_file_pensionAge" translatable="false">pensionAge</string>
     <string name="about_app_text">This application is designed to calculate users pension age and based on that and on his date of birth, to show him countdown, how long he has until he can go to pension</string>
     <string name="about_app_title">About application</string>
-    <string name="reached_pension">You have already enjoyed age of pension. Enjoy</string>
+    <string name="reached_pension">You have already reached the age of pension. Enjoy</string>
     <plurals name="number_of_years">
         <item quantity="one"><big>%d</big> year</item>
         <item quantity="other"><big>%d</big> years</item>
